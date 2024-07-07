@@ -1,15 +1,14 @@
 #!/bin/bash
 
-# Update package lists
+# Update package lists and install necessary packages
 sudo apt-get update
+sudo apt-get install -y package1 package2 package3  # Replace with actual package names
 
-# Install system packages
-sudo apt-get install -y \
-    nginx \
-    postgresql-client \
-    # Add more system packages as needed
+# Additional installation steps (if needed)
+# ...
 
-# Install Python libraries
-pip install -r /path/to/your/project/requirements.txt
+# Clean up
+sudo apt-get autoremove -y
+sudo apt-get clean
 
-# Additional commands as needed
+echo "Dependencies installed successfully!"
