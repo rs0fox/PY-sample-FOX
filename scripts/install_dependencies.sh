@@ -1,13 +1,15 @@
 #!/bin/bash
 
-# Update package lists and install necessary system packages
+# Update package lists
 sudo apt-get update
-sudo apt-get install -y wget gnupg  # Example system packages
 
-# Install Python pip (if not already installed)
-sudo apt-get install -y python3-pip
+# Install system packages
+sudo apt-get install -y \
+    nginx \
+    postgresql-client \
+    # Add more system packages as needed
 
-# Install Python dependencies from requirements.txt
-sudo pip3 install -r /home/ubuntu/myapp/requirements.txt
+# Install Python libraries
+pip install -r /path/to/your/project/requirements.txt
 
-# Additional installation commands as needed
+# Additional commands as needed
