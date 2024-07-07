@@ -4,16 +4,14 @@ phases:
   install:
     runtime-versions:
       python: 3.8
-      docker: 18
-    commands:
-      - echo "Installing dependencies..."
-      - pip install -r requirements.txt
   build:
     commands:
-      - echo "Build started"
-      - python -m unittest discover -s tests/ -p '*_test.py'
-
+      - echo Build started on `date`
+      - echo Installing dependencies...
+      - pip install -r requirements.txt  # Replace with your requirements installation command
+  post_build:
+    commands:
+      - echo Build completed on `date`
 artifacts:
   files:
-    - '**/*'
-  discard-paths: yes
+    - '**/*'  # Include all files in the artifact

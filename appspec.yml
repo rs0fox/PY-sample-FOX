@@ -1,33 +1,22 @@
 version: 0.0
 os: linux
-
 files:
   - source: /
-    destination: /var/www/html/
-
+    destination: /home/ubuntu/myapp   # Replace with your app directory
 permissions:
-  - object: /var/www/html/
+  - object: /home/ubuntu/myapp
     pattern: "**"
     owner: ubuntu
     group: ubuntu
-
 hooks:
-  ApplicationStop:
-    - location: scripts/stop_server.sh
-      timeout: 60
-      runas: root
-
   BeforeInstall:
-    - location: scripts/before_install.sh
+    - location: scripts/install_dependencies.sh
       timeout: 300
-      runas: root
-
+      runas: ubuntu
   AfterInstall:
-    - location: scripts/after_install.sh
-      timeout: 300
-      runas: root
-
-  ApplicationStart:
     - location: scripts/start_server.sh
-      timeout: 60
-      runas: root
+      timeout: 300
+      runas: ubuntu
+    - location: scripts/cleanup.sh
+      timeout: 300
+      runas: ubuntu
