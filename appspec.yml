@@ -3,10 +3,10 @@ os: linux
 
 files:
   - source: /
-    destination: /home/ubuntu/myapp   # Replace with your app directory
+    destination: /home/ubuntu/PY_PIPE   # Replace with your actual app directory
 
 permissions:
-  - object: /home/ubuntu/myapp
+  - object: /home/ubuntu/PY_PIPE
     pattern: "**"
     owner: ubuntu
     group: ubuntu
@@ -15,13 +15,13 @@ hooks:
   BeforeInstall:
     - location: scripts/install_dependencies.sh
       timeout: 300
-      runas: root
+      runas: ubuntu
     - command: chmod +x scripts/install_dependencies.sh   # Ensure script has executable permissions
 
   AfterInstall:
     - location: scripts/start_server.sh
       timeout: 300
-      runas: root
+      runas: ubuntu
     - location: scripts/cleanup.sh
       timeout: 300
-      runas: root
+      runas: ubuntu
