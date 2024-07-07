@@ -1,27 +1,9 @@
 version: 0.0
 os: linux
-
 files:
   - source: /
-    destination: /home/ubuntu/PY_PIPE   # Replace with your actual app directory
-
-permissions:
-  - object: /home/ubuntu/PY_PIPE
-    pattern: "**"
-    owner: ubuntu
-    group: ubuntu
-
+    destination: /var/www/html/PY-PIPE
 hooks:
-  BeforeInstall:
-    - location: scripts/install_dependencies.sh
+  ApplicationStart:
+    - location: application_start.sh
       timeout: 300
-      runas: ubuntu
-    - command: chmod +x scripts/install_dependencies.sh   # Ensure script has executable permissions
-
-  AfterInstall:
-    - location: scripts/start_server.sh
-      timeout: 300
-      runas: ubuntu
-    - location: scripts/cleanup.sh
-      timeout: 300
-      runas: ubuntu
